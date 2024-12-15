@@ -15,5 +15,14 @@
 MONGODB_URI=mongodb+srv://[username]:[pw]@[cluster-name]/[db-name]?retryWrites=true&w=majority&appName=[]
 ```
 
-* backend: `npm run start:dev` (PORT:3000)
-* frontend: `npm run dev` (PORT:VUE)
+Step by step yang harus dilakukan
+1. Accept GitHub invitation
+2. Masukkan .env di backend
+3. `npm install` di masing2 folder (backend, frontend)
+4. `npm run start:dev` di backend
+5. `npm run dev` di frontend
+
+Info penting:
+* Port backend = `3000`
+* Nama database = `backend-fp`
+* Nama tabel di database = `user, items, borrowItems`
