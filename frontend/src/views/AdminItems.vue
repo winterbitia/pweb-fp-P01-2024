@@ -78,10 +78,14 @@ export default {
 </script>
 
 <template>
-  <button @click="isFormVisible = !isFormVisible" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-8">Add New Item</button>
+  <div class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold">Manage Items</h2>
+    <button @click="isFormVisible = !isFormVisible" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-8">
+      {{ isFormVisible ? 'Hide Form' : 'Add New Item' }}
+    </button>
     
     <div v-if="isFormVisible" class="mt-8">
-      <h2 class="text-2xl font-bold mb-4">Add New Item</h2>
+      <h3 class="text-xl font-bold mb-4">Add New Item</h3>
       <form @submit.prevent="addItem" class="space-y-4">
         <div>
           <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
@@ -113,7 +117,26 @@ export default {
       No items found.
     </div>
     
-    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <ItemCard v-for="item in itemsData" :key="item._id" :item="item" @item-deleted="fetchItems" @item-edited="fetchItems" />
+    <div v-else class="overflow-x-auto mt-8">
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr>
+            <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-700">Name</th>
+            <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-700">Amount</th>
+            <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-700">Condition</th>
+            <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-700">Created At</th>
+            <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-700">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ItemCard
+            v-for="item in itemsData"
+            :key="item._id"
+            :item="item"
+            :fetchItems="fetchItems"
+          />
+        </tbody>
+      </table>
     </div>
+  </div>
 </template>
