@@ -12,7 +12,7 @@ const ItemSchema: Schema = new Schema(
     name: { type: String, required: true },
     amount: { type: String, required: true },
     condition: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now },
+    created_at: { type: Date, default: Date.now },
   },
 );
 
