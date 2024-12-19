@@ -39,7 +39,7 @@
           </div>
           <button
             type="submit"
-            class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+            class="w-full bg-gray-700 text-white p-2 rounded-md hover:bg-blue-950"
           >
             Login
           </button>
@@ -47,7 +47,10 @@
       </div>
     </div>
     <footer class="bg-gray-800 text-white text-center py-4">
-      <p>&copy; 2024 Peminjaman Barang</p>
+      <div class="flex items-center justify-center space-x-4">
+        <img src="../assets/logo/logoKCKS.png" alt="Logo" class="h-12 w-auto" />
+        <p class="text-lg font-semibold">Peminjaman Barang</p>
+      </div>
     </footer>
   </div>
 </template>
