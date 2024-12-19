@@ -1,9 +1,9 @@
 // src/components/Navbar.vue
 <template>
   <nav class="bg-gray-800 text-white p-4 flex justify-between items-center">
-    <div class="text-lg font-bold">Peminjaman Barang</div>
+    <div class="text-lg font-bold">KCKS⚙️</div>
     <div v-if="username" class="text-sm">
-      Logged in as: <span class="font-semibold">{{ username }}</span>
+      <span class="font-semibold">{{ username }}</span>
     </div>
   </nav>
 </template>
