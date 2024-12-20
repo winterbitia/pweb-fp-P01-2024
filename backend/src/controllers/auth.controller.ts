@@ -16,7 +16,7 @@ export const loginController = async (req: Request, res: Response) => {
     const token = jwt.sign(
       { username: user.username, role: user.role },
       process.env.JWT_SECRET || "s3cr37_p1", // Gunakan secret dari .env
-      { expiresIn: "1h" }
+      { expiresIn: "2h" }
     );
 
     res.json({ 
