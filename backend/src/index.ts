@@ -2,6 +2,7 @@ import express from "express";
 import "./db-connection";
 import authRouter from "./routes/authRoute";
 import itemRouter from "./routes/item.route";
+import userRouter from "./routes/userRoutes"; // Import user routes
 import cors from "cors";
 
 const app = express();
@@ -18,6 +19,7 @@ app.get("/", (_, res) => {
 
 app.use("/items", itemRouter);
 app.use("/auth", authRouter);
+app.use("/api", userRouter); // Use user routes
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
