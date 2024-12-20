@@ -1,13 +1,27 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
     "module": "commonjs",
-    "rootDir": "./src",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "noEmit": false,
     "outDir": "./dist",
+    "baseUrl": "./src",
+    "skipLibCheck": true,
     "strict": true,
+    "strictNullChecks": false,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "strictPropertyInitialization": false,
     "esModuleInterop": true,
-    "resolveJsonModule": true
-  },
-  "include": ["src", "src/app.js"],
-  "exclude": ["node_modules"]
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true
+  }
 }

@@ -1,23 +1,13 @@
 import express from "express";
-import dotenv from "dotenv";
+import "./db-connection";
+import authRouter from "./routes/authRoute";
+import itemRouter from "./routes/item.route";
 import cors from "cors";
-import authRoutes from "./routes/authRoute";
-import connectToDatabase from "./db-connection";
-import { seedUsers } from "./models/user";
-
-// Muat variabel lingkungan dari .env
-dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Koneksi ke database
-connectToDatabase().then(() => {
-  seedUsers(); // Seed data setelah koneksi berhasil
-});
-
-// Endpoint utama
 app.get("/", (_, res) => {
   const currentTime = new Date().toLocaleString();
   res.status(200).send({
@@ -26,10 +16,10 @@ app.get("/", (_, res) => {
   });
 });
 
-// Tambahkan rute autentikasi
-app.use("/auth", authRoutes);
+app.use("/items", itemRouter);
+app.use("/auth", authRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });

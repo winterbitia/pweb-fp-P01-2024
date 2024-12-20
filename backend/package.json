@@ -1,12 +1,11 @@
 {
-  "name": "peminjaman-barang",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "Backend untuk website manajemen peminjaman barang.",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts",
-    "build": "tsc"
+    "build": "tsc --build",
+    "start": "node ./dist/index.js",
+    "start:dev": "nodemon ./src/index.ts"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -21,7 +20,9 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.2",
-    "ts-node": "^10.9.1",
+    "@types/node": "^22.10.2",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
     "typescript": "^5.2.2"
   }
 }
