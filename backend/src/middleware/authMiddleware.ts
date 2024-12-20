@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
-// Perluas tipe Request agar properti `user` dikenali
 declare global {
   namespace Express {
     interface Request {
