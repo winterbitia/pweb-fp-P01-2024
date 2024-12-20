@@ -60,17 +60,22 @@ export default {
   },
   methods: {
     async submitBorrow() {
-      try {
-        await axios.post('/api/operator/book-equipment', this.borrowForm);
-        alert('Peminjaman berhasil!');
-        this.fetchBorrowedItems();
-      } catch (error) {
-        alert('Error: ' + error.response.data.error);
-      }
-    },
+  try {
+    await axios.post('http://localhost:3000/borrow/book-equipment', this.borrowForm);
+    alert('Peminjaman berhasil!');
+    this.fetchBorrowedItems(); // Refresh tabel setelah submit
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.error) {
+      alert('Error: ' + error.response.data.error);
+    } else {
+      console.error('Unknown error:', error); // Debugging tambahan
+      alert('Terjadi kesalahan saat mengirim data.');
+    }
+  }
+},
     async fetchBorrowedItems() {
       try {
-        const response = await axios.get('/api/operator/all-equipment');
+        const response = await axios.get('http://localhost:3000/borrow/all-equipment');
         this.borrowedItems = response.data;
       } catch (error) {
         alert('Error fetching data: ' + error.message);
@@ -84,5 +89,111 @@ export default {
 </script>
 
 <style>
-/*ini entar style hehe*/
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Container */
+div {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1 {
+  text-align: center;
+  color: #444;
+}
+
+h2 {
+  color: #555;
+  margin-top: 20px;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+form label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 60%;
+}
+
+form button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+table thead {
+  background-color: #007BFF;
+  color: white;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tbody tr:hover {
+  background-color: #f1f9ff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  form label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  form input {
+    width: 100%;
+  }
+
+  table {
+    font-size: 14px;
+  }
+}
 </style>

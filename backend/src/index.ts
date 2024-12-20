@@ -2,8 +2,9 @@ import express from "express";
 import "./db-connection";
 import authRouter from "./routes/authRoute";
 import itemRouter from "./routes/item.route";
+import borrowRouter from "./routes/borrow.route";
 import cors from "cors";
-
+  
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -18,6 +19,8 @@ app.get("/", (_, res) => {
 
 app.use("/items", itemRouter);
 app.use("/auth", authRouter);
+app.use("/borrow", borrowRouter);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
