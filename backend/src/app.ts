@@ -1,17 +1,17 @@
 import express, { Application } from "express";
 import authRoutes from "./routes/authRoute";
+import userRoutes from './routes/userRoutes'; 
 
-const app: Application = express(); // Deklarasikan app di sini
+const app: Application = express(); // Declare app here
 
-// Middleware untuk parsing JSON
 app.use(express.json());
 
-// Daftarkan rute otentikasi
 app.use("/auth", authRoutes);
 
-const PORT = 3000;
+app.use('/api', userRoutes);
 
-// Jalankan server
+const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

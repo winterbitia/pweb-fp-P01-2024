@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { User } from "../models/user";
+import User from "../models/user.model"; // Pernyataan impor yang disesuaikan
 
 export const loginController = async (req: Request, res: Response) => {
   const { username, password } = req.body;
@@ -16,15 +16,15 @@ export const loginController = async (req: Request, res: Response) => {
     const token = jwt.sign(
       { username: user.username, role: user.role },
       process.env.JWT_SECRET || "s3cr37_p1", // Gunakan secret dari .env
-      { expiresIn: "1h" }
+      { expiresIn: "2h" }
     );
 
-    return res.status(200).json({
+    res.json({ 
       token,
       username: user.username,
-      role: user.role,
+      role: user.role
     });
-  } catch (err) {
-    return res.status(500).json({ message: "Server error", error: err });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
   }
 };

@@ -1,4 +1,3 @@
-// src/views/LandingView.vue
 <template>
   <div class="min-h-screen flex flex-col">
     <navbar :username="username" />
@@ -44,23 +43,22 @@
             Login
           </button>
         </form>
+        <div class="text-center mt-4">
+          <RouterLink to="/rules" class="text-blue-500 hover:underline">Aturan & Alur Peminjaman</RouterLink>
+        </div>
       </div>
     </div>
-    <footer class="bg-gray-800 text-white text-center py-4">
-      <div class="flex items-center justify-center space-x-4">
-        <img src="../assets/logo/logoKCKS.png" alt="Logo" class="h-12 w-auto" />
-        <p class="text-lg font-semibold">Peminjaman Barang</p>
-      </div>
-    </footer>
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue";
-import dummyData from "../dummyData";
+import Footer from "@/components/Footer.vue";
+import { RouterLink, useRouter } from 'vue-router';
+import axios from 'axios';
 
 export default {
-  components: { Navbar },
+  components: { Navbar, Footer, RouterLink },
   data() {
     return {
       loginData: {
@@ -71,18 +69,30 @@ export default {
       username: "",
     };
   },
+  setup() {
+    const router = useRouter();
+    return { router };
+  },
   methods: {
-    handleLogin() {
-      const user = dummyData.find(
-        (u) =>
-          u.username === this.loginData.username &&
-          u.password === this.loginData.password &&
-          u.role === this.loginData.role
-      );
-      if (user) {
-        this.username = user.username;
+    async handleLogin() {
+      try {
+        const response = await axios.post('http://localhost:3000/auth/login', this.loginData);
+        const { token, username } = response.data;
+        localStorage.setItem('token', token);
+        this.username = username;
         alert("Login successful!");
-      } else {
+        setTimeout(() => {
+          localStorage.removeItem('token');
+          alert("Session expired. Please log in again.");
+        }, 2 * 60 * 60 * 1000); // 2 hours
+
+        // Redirect based on role
+        if (this.loginData.role === 'admin') {
+          this.router.push('/admin');
+        } else if (this.loginData.role === 'operator') {
+          this.router.push('/operator');
+        }
+      } catch (error) {
         alert("Invalid login credentials.");
       }
     },
