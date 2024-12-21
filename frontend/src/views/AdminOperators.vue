@@ -78,7 +78,7 @@ export default {
 
 <template>
   <div class="container mx-auto px-4 py-8">
-    <h2 class="text-2xl font-bold mb-4">Manage Operators</h2>
+    <h2 class="text-2xl font-bold">Manage Operators</h2>
     <button @click="isFormVisible = !isFormVisible" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-8">
       {{ isFormVisible ? 'Hide Form' : 'Add New Operator' }}
     </button>
@@ -91,15 +91,15 @@ export default {
           <input v-model="newOperator.username" type="text" id="username" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required />
         </div>
         <div>
-          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-          <input v-model="newOperator.password" type="password" id="password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required />
-        </div>
-        <div>
           <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
           <select v-model="newOperator.role" id="role" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
             <option value="Admin">Admin</option>
             <option value="Operator">Operator</option>
           </select>
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input v-model="newOperator.password" type="password" id="password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required />
         </div>
         <div>
           <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Add Operator</button>

@@ -17,8 +17,15 @@
           <input v-model="editedOperator.username" type="text" id="edit-username" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required />
         </div>
         <div>
+          <label for="edit-password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input v-model="editedOperator.password" type="password" id="edit-password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+        </div>
+        <div>
           <label for="edit-role" class="block text-sm font-medium text-gray-700">Role</label>
-          <input v-model="editedOperator.role" type="text" id="edit-role" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required />
+          <select v-model="editedOperator.role" id="edit-role" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+            <option value="Admin">Admin</option>
+            <option value="Operator">Operator</option>
+          </select>
         </div>
         <div>
           <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Save</button>
