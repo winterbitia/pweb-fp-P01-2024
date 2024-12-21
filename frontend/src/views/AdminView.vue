@@ -20,6 +20,7 @@ export default {
     <nav class="mb-6">
       <router-link to="/admin/" class="mr-4">Manage Items</router-link>
       <router-link to="/admin/all-operators" class="mr-4">Manage Operators</router-link>
+      <router-link to="/admin/summary">Summary</router-link>
     </nav>
     <router-view></router-view>
   </div>

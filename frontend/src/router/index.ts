@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { defineAsyncComponent } from 'vue'
 import AdminOperators from '@/views/AdminOperators.vue'
+import AdminBorrowSummary from '@/views/AdminBorrowSummary.vue'
 
 const LandingView = defineAsyncComponent(() => import('../views/LandingView.vue'))
 const AdminItems = defineAsyncComponent(() => import('../views/AdminItems.vue'))
@@ -28,6 +29,10 @@ const router = createRouter({
         {
           path: 'all-operators',
           component: AdminOperators
+        },
+        {
+          path: 'summary',
+          component: AdminBorrowSummary
         }
       ]
     },
