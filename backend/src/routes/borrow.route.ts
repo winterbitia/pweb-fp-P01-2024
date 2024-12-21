@@ -6,4 +6,4 @@ const router = express.Router();
 router.post('/book-equipment', createBorrow);
 router.get('/all-equipment', getAllBorrowedItems);
 
-module.exports = router;
+export default router;

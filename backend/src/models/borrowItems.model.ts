@@ -1,6 +1,15 @@
-const mongoose = require('mongoose');
+import mongoose, { Schema, Document } from 'mongoose';
 
-const BorrowItemsSchema = new mongoose.Schema({
+export interface IBorrowItems extends Document {
+    item_name: string;
+    amount: number;
+    borrow_date: Date;
+    return_date: Date;
+    borrower_name: string;
+    officer_name: string;
+}
+
+const BorrowItemsSchema: Schema = new Schema({
     item_name: { type: String, required: true },
     amount: { type: Number, required: true },
     borrow_date: { type: Date, required: true },
@@ -9,4 +18,4 @@ const BorrowItemsSchema = new mongoose.Schema({
     officer_name: { type: String, required: true },
 }, { timestamps: true });
 
-module.exports = mongoose.model('BorrowItems', BorrowItemsSchema);
+export const BorrowItems = mongoose.model<IBorrowItems>('BorrowItems', BorrowItemsSchema);
