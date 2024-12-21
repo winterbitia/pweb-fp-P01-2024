@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { defineAsyncComponent } from 'vue'
 
+const WelcomeView = defineAsyncComponent(() => import('../views/WelcomeView.vue'))
 const LandingView = defineAsyncComponent(() => import('../views/LandingView.vue'))
 const AdminItems = defineAsyncComponent(() => import('../views/AdminItems.vue'))
 const AdminView = defineAsyncComponent(() => import('../views/AdminView.vue'))
@@ -12,7 +13,12 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Landing',
+      name: 'Welcome',
+      component: WelcomeView,
+    },
+    {
+      path: '/login',
+      name: 'Login',
       component: LandingView,
     },
     {

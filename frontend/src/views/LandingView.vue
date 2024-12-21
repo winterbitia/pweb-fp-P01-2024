@@ -1,6 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col">
-    <navbar :username="username" />
+  <div class="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat" style="background-image: url('@/assets/logo/background.jpeg');">
     <div class="flex-grow flex items-center justify-center">
       <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 class="text-2xl font-bold text-center mb-4">Login</h1>
@@ -38,33 +37,27 @@
           </div>
           <button
             type="submit"
-            class="w-full bg-gray-700 text-white p-2 rounded-md hover:bg-blue-950"
+            class="w-full bg-gray-800 text-white p-2 rounded-md hover:bg-sky-950"
           >
             Login
           </button>
         </form>
-        <div class="text-center mt-4">
-          <RouterLink to="/rules" class="text-blue-500 hover:underline">Aturan & Alur Peminjaman</RouterLink>
-        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import Footer from "@/components/Footer.vue";
-import { RouterLink, useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 import axios from 'axios';
 
 export default {
-  components: { Navbar, Footer, RouterLink },
   data() {
     return {
       loginData: {
         username: "",
         password: "",
-        role: "operator",
+        role: "",
       },
       username: "",
     };
@@ -79,7 +72,10 @@ export default {
         const response = await axios.post('http://localhost:3000/auth/login', this.loginData);
         const { token, username } = response.data;
         localStorage.setItem('token', token);
+        localStorage.setItem('username', username);
+        localStorage.setItem('role', this.loginData.role);
         this.username = username;
+        this.$emit('update-user', username, this.loginData.role);
         alert("Login successful!");
         setTimeout(() => {
           localStorage.removeItem('token');
@@ -103,5 +99,21 @@ export default {
 <style scoped>
 body {
   font-family: Arial, sans-serif;
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-center {
+  background-position: center;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
 </style>
