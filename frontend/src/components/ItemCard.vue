@@ -81,8 +81,8 @@ export default defineComponent({
     <td class="py-2 px-4 border-b border-gray-200">{{ formattedDate }}</td>
     <td class="py-2 px-4 border-b border-gray-200">
       <div class="flex flex-wrap gap-2">
-        <button @click="deleteItem" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700">Delete</button>
         <button @click="toggleEditMode" class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-700">Edit</button>
+        <button @click="deleteItem" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700">Delete</button>
       </div>
     </td>
   </tr>
